@@ -2,10 +2,6 @@
 
 A modern and responsive portfolio website built with **Flask**, **HTML**, and **CSS**, containerized using **Docker** for easy deployment.
 
-## 📸 Preview
-
-![Portfolio Screenshot](images/portfolio.png)
-
 ---
 
 ## 🛠️ Tech Stack
