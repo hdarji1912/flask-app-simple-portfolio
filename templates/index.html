@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardik Darji - Portfolio Card</title>
+    <style>
+        /* Base Reset & Background styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top right, #2a1654, #080711 60%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            padding: 2rem;
+        }
+
+        /* Core Card Structure */
+        .portfolio-container {
+            width: 100%;
+            max-width: 1000px;
+            background: linear-gradient(145deg, rgba(20, 18, 43, 0.4), rgba(10, 9, 22, 0.7));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+        }
+
+        /* Typography & Header section */
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #00f0ff 0%, #7000ff 70%, #d400ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2rem;
+        }
+
+        .subtitle {
+            display: inline-block;
+            border: 1.5px solid #231d54;
+            background: rgba(14, 12, 36, 0.6);
+            padding: 0.6rem 1.8rem;
+            border-radius: 999px;
+            font-size: 1rem;
+            color: #efefff;
+            letter-spacing: 0.05em;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Skill Cards Grid System */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .skill-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem 2rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            min-height: 280px;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Individual Card Accent Borders and Accent Bars */
+        .skill-card.linux { border: 1px solid rgba(0, 140, 255, 0.25); }
+        .skill-card.github { border: 1px solid rgba(140, 0, 255, 0.25); }
+        .skill-card.shell { border: 1px solid rgba(0, 255, 140, 0.25); }
+        .skill-card.python { border: 1px solid rgba(255, 200, 0, 0.25); }
+
+        .accent-bar {
+            width: 50px;
+            height: 4px;
+            border-radius: 999px;
+            margin-top: 1.5rem;
+        }
+
+        .linux .accent-bar { background: #008cff; box-shadow: 0 0 12px #008cff; }
+        .github .accent-bar { background: #8c00ff; box-shadow: 0 0 12px #8c00ff; }
+        .shell .accent-bar { background: #00ff8c; box-shadow: 0 0 12px #00ff8c; }
+        .python .accent-bar { background: #ffc800; box-shadow: 0 0 12px #ffc800; }
+
+        /* Skill Content Items */
+        .skill-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .skill-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .linux .skill-label { color: #008cff; }
+        .github .skill-label { color: #a154ff; }
+        .shell .skill-label { color: #00ff8c; }
+        .python .skill-label { color: #ffc800; }
+
+        .skill-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        /* SVG Icon styling over-rides if needed */
+        .skill-icon svg {
+            width: 64px;
+            height: 64px;
+        }
+
+        /* Bottom Tags / Personality Traits Container */
+        .traits-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .trait-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(14, 12, 36, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 0.6rem 1.4rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .trait-tag.focused { color: #3b82f6; border-color: rgba(59, 130, 246, 0.2); }
+        .trait-tag.problem-solver { color: #a855f7; border-color: rgba(168, 85, 247, 0.2); }
+        .trait-tag.quick-learner { color: #22c55e; border-color: rgba(34, 197, 94, 0.2); }
+        .trait-tag.goal-oriented { color: #eab308; border-color: rgba(234, 179, 8, 0.2); }
+
+        .trait-tag svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Responsive Breakpoint adjustments */
+        @media (max-width: 768px) {
+            .portfolio-container { padding: 2rem 1.5rem; }
+            h1 { font-size: 2.8rem; }
+            .skills-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-container">
+        <h1>Hardik Darji</h1>
+        <div class="subtitle">Always Learning. Always Improving.</div>
+
+        <div class="skills-grid">
+            
+            <div class="skill-card linux">
+                <div class="skill-icon">
+                    <svg viewBox="0 0 448 512" fill="#ffffff"><path d="M220.8 123.3c1 .5 1.8 1.7 3 1.7 1.1 0 2.8-1.2 2.8-2.3 0-2-2.1-4.1-4.2-4.1-1.7 0-2.3 1.4-2.3 2.3 0 1.1 1 1.9 1.7 2.4zM448 340.2c0-8.2-2.9-15.5-8.4-21.7-10.2-11.4-25.1-11.8-25.1-11.8-22.7-1.4-44.7 12-44.7 12-10.1 6.5-17.9 4-17.9 4-19.4-6.5-35.3-23.5-37.1-40.3-30.8-21.4-56.1-59.5-69.2-101.4 20.1-9.4 34.1-29.6 34.1-53.1 0-32.2-26.2-58.4-58.4-58.4s-58.4 26.2-58.4 58.4c0 23.5 14 43.7 34.1 53.1-13.1 41.9-38.3 80-69.2 101.4-1.8 16.7-17.7 33.8-37.1 40.3 0 0-7.8 2.5-17.9-4 0 0-22-13.4-44.7-12c0 0-14.9.4-25.1 11.8C2.9 324.8 0 332.1 0 340.2c0 21.2 20.3 30.6 38.6 31.5 5 20.4 12.1 39.2 21.2 56.4-1.8 1.9-3.4 3.7-4.6 5.3-12.2 15.6-11 36.6 2.8 50.4 10.7 10.8 27.2 11.4 38.4 2.1 27.9 18.6 64.9 30.2 106.1 34.1 10.1 1 19.3-5.2 21.7-14.9 2.4-9.7-3.6-19.4-13.3-21.7-33-3.1-62.4-12.4-84.8-26.8 9.5-22.1 18.3-46.7 25.5-72.9 24.1 11.3 52 18.2 82.1 18.2 30.1 0 58-6.9 82.1-18.2 7.1 26.3 16 50.8 25.5 72.9-22.4 14.4-51.8 23.7-84.8 26.8-9.7 0-15.8 12-13.3 21.7 2.4 9.7 11.6 15.9 21.7 14.9 41.2-3.9 78.2-15.5 106.1-34.1 11.2 9.3 27.7 8.7 38.4-2.1 13.8-13.8 15-34.8 2.8-50.4-1.1-1.6-2.8-3.4-4.6-5.3 9.1-17.2 16.3-36 21.2-56.4 18.3-.9 38.6-10.3 38.6-31.5z"/></svg>
+                </div>
+                <div>
+                    <div class="skill-label">Skill</div>
+                    <div class="skill-name">Linux</div>
+                </div>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="skill-card github">
+                <div class="skill-icon">
+                    <svg viewBox="0 0 496 512" fill="#ffffff"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5.7 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-.7zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+                </div>
+                <div>
+                    <div class="skill-label">Skill</div>
+                    <div class="skill-name">GitHub</div>
+                </div>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="skill-card shell">
+                <div class="skill-icon">
+                    <svg viewBox="0 0 512 512" fill="#00ff8c"><path d="M22.4 32h467.2C502.4 32 512 41.6 512 54.4v403.2c0 12.8-9.6 22.4-22.4 22.4H22.4C9.6 480 0 470.4 0 457.6V54.4C0 41.6 9.6 32 22.4 32zm23.4 121.4c-6.2-6.2-16.4-6.2-22.6 0l-11.3 11.3c-6.2 6.2-6.2 16.4 0 22.6L111.4 287 11.9 386.6c-6.2 6.2-6.2 16.4 0 22.6l11.3 11.3c6.2 6.2 16.4 6.2 22.6 0l110.8-110.8c6.2-6.2 6.2-16.4 0-22.6L45.8 153.4zM240 384h224c8.8 0 16-7.2 16-16v-16c0-8.8-7.2-16-16-16H240c-8.8 0-16 7.2-16 16v16c0 8.8 7.2 16 16 16z"/></svg>
+                </div>
+                <div>
+                    <div class="skill-label">Skill</div>
+                    <div class="skill-name">Shell Scripting</div>
+                </div>
+                <div class="accent-bar"></div>
+            </div>
+
+            <div class="skill-card python">
+                <div class="skill-icon">
+                    <svg viewBox="0 0 448 512" fill="#ffc800"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-68.6 67.8H172.7c-4.5 0-8.1 3.6-8.1 8.1v56.3c0 33.2 24.5 59.5 57 59.5h81.3c35.1 0 65.5 25 72.3 59.8 7 36 2.1 61.8-31.9 61.8H215.1c-32.9 0-59.2-24.5-59.2-57.5v-31.1H104c-35.4 0-64 28.6-64 64V412c0 35.4 28.6 64 64 64h159.9c48.8 0 94.6-25 111.9-69.3 14.7-37.6 12.8-79.6 12.8-119.8v-13.8c.1-23.3 3.5-55.6-12.8-72.6zM124.2 412c-12 0-21.7-9.7-21.7-21.7s9.7-21.7 21.7-21.7 21.7 9.7 21.7 21.7-9.7 21.7-21.7 21.7zm164.2-225c0-33.2-24.5-59.5-57-59.5h-81.3c-35.1 0-65.5-25-72.3-59.8-7-36-2.1-61.8 31.9-61.8h128.3c32.9 0 59.2 24.5 59.2 57.5v31.1h51.9c35.4 0 64-28.6 64-64V100c0-35.4-28.6-64-64-64H214.4c-48.8 0-94.6 25-111.9 69.3-14.7 37.6-12.8 79.6-12.8 119.8v13.8c-.1 23.3-3.5 55.6 12.8 72.6 7.7 30.9 22.3 54.2 53.4 54.2h40.1v-47.4c0-36.8 31.2-67.8 68.6-67.8h104.9c4.5 0 8.1-3.6 8.1-8.1v-56.3zm12.3-87c-12 0-21.7-9.7-21.7-21.7s9.7-21.7 21.7-21.7 21.7 9.7 21.7 21.7-9.7 21.7-21.7 21.7z"/></svg>
+                </div>
+                <div>
+                    <div class="skill-label">Skill</div>
+                    <div class="skill-name">Python</div>
+                </div>
+                <div class="accent-bar"></div>
+            </div>
+
+        </div>
+
+        <div class="traits-container">
+            <div class="trait-tag focused">
+                <svg viewBox="0 0 512 512"><path d="M0 224c0 53 43 96 96 96h16c8.8 0 16-7.2 16-16V144c0-8.8-7.2-16-16-16H96c-53 0-96 43-96 96zm224 16c0 8.8 7.2 16 16 16h16c53 0 96-43 96-96s-43-96-96-96h-16c-8.8 0-16 7.2-16 16v160zm160-48h32c17.7 0 32-14.3 32-32s-14.3-32-32-32h-32v64zm0 80h48c17.7 0 32-14.3 32-32s-14.3-32-32-32h-48v64z"/></svg>
+                Focused
+            </div>
+            <div class="trait-tag problem-solver">
+                <svg viewBox="0 0 576 512"><path d="M234.5 5.7c12.7-7.6 28.9-7.6 41.6 0l240 144c15 9 23.9 25.1 23.9 42.3v128c0 17.2-9 33.3-23.9 42.3l-240 144c-12.7 7.6-28.9 7.6-41.6 0l-240-144C9 353.3 0 337.2 0 320V192c0-17.2 9-33.3 23.9-42.3l240-144z"/></svg>
+                Problem Solver
+            </div>
+            <div class="trait-tag quick-learner">
+                <svg viewBox="0 0 352 512"><path d="M96 160c0-35.3 28.7-64 64-64h32c35.3 0 64 28.7 64 64v128c0 35.3-28.7 64-64 64h-32c-35.3 0-64-28.7-64-64V160z"/></svg>
+                Quick Learner
+            </div>
+            <div class="trait-tag goal-oriented">
+                <svg viewBox="0 0 512 512"><path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm0 448c-105.9 0-192-86.1-192-192S150.1 64 256 64s192 86.1 192 192-86.1 192-192 192z"/></svg>
+                Goal Oriented
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
